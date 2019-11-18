@@ -9,6 +9,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import useStyles from './styles';
+import logo from '../../../../assets/awesome_logo.png';
 
 function Topbar({ onMenuButtonClick }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -35,7 +36,7 @@ function Topbar({ onMenuButtonClick }) {
           <MenuIcon />
         </IconButton>
         <div className={classes.navbarTitle}>
-          <img alt="Logo" src="" />
+          <img alt="Logo" src={logo} />
         </div>
         <div className={classes.flexGrow} />
         <IconButton

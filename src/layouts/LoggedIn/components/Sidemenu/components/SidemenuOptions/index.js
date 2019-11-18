@@ -61,14 +61,14 @@ function SidemenuOptions({ options, handleClose, isDesktop, open, ...rest }) {
         setAnchorEl(null);
       }
     }
-  }, [openedHover]);
+  }, [keepOpen, openedHover]);
 
   useEffect(() => {
     if (!keepOpen && !openedHover) {
       setAnchorEl(null);
       setMenu(null);
     }
-  }, [keepOpen]);
+  }, [keepOpen, openedHover]);
 
   const selectedInCollapse = items => {
     const res = items.find(i => i.path === pathname);
@@ -77,9 +77,9 @@ function SidemenuOptions({ options, handleClose, isDesktop, open, ...rest }) {
 
   useEffect(() => {
     options.forEach(item => {
-      if (selectedInCollapse(item.submenu)) setMenuOpened(item.name);
+      if (selectedInCollapse(item.submenu)) setMenuOpened(item.title);
     });
-  }, []);
+  }, [options]);
 
   return (
     <>

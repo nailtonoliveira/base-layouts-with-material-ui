@@ -1,38 +1,44 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useTheme, useMediaQuery } from '@material-ui/core';
 
 import useStyles from './styles';
 import Topbar from './components/Topbar';
 import Sidemenu from './components/Sidemenu';
+import Footer from './components/Footer';
 
 // todo: construct this
-function LoggedIn() {
+function LoggedIn({ children }) {
   const classes = useStyles();
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up('sm'), {
     defaultMatches: true,
   });
 
-  const [open, setOpen] = useState(isDesktop);
+  const [sidemenuOpen, setSidemenuOpen] = useState(isDesktop);
   const handleOpen = () => {
-    setOpen(prev => !prev);
+    setSidemenuOpen(prev => !prev);
   };
 
   return (
     <div className={classes.root}>
       <Topbar onMenuButtonClick={handleOpen} />
       <Sidemenu
-        open={open}
+        open={sidemenuOpen}
         onClose={handleOpen}
         variant={isDesktop ? 'permanent' : 'temporary'}
         isDesktop={isDesktop}
       />
-      <main>
-        <div>content</div>
+      <main className={classes.content}>
+        {children}
+        <Footer />
       </main>
-      <div>Footer</div>
     </div>
   );
 }
+
+LoggedIn.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export default LoggedIn;

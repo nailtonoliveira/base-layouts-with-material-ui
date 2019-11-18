@@ -8,7 +8,10 @@ const useStyles = makeStyles(() => ({
     marginRight: 12,
   },
   navbarTitle: {
+    display: 'flex',
+    alignItems: 'center',
     width: 260,
+    maxWidth: 260,
   },
   hide: {
     display: 'none',
